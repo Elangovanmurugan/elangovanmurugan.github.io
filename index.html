@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elangovan Murugan | Data Scientist — Networks &amp; Public Sector Analytics</title>
+<meta name="description" content="Portfolio of Elangovan Murugan, a data scientist working across public-sector analytics, UK rail network connectivity, healthcare data and machine learning.">
+<meta name="theme-color" content="#EEF4FB">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%2314263B'/%3E%3Ccircle cx='32' cy='32' r='30' fill='none' stroke='%232E86C1' stroke-width='3'/%3E%3Ctext x='32' y='41' font-family='Georgia,serif' font-size='26' fill='%23EAF1F8' text-anchor='middle'%3EEM%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* ===================== DESIGN TOKENS — light & soothing, blue theme ===================== */
+  :root{
+    --paper:#EEF4FB;        /* soft powder blue — primary background */
+    --paper-alt:#E3ECF6;    /* deeper powder blue — alternating sections */
+    --surface:#FFFFFF;      /* card white */
+    --ink:#1E2A3A;          /* deep blue-charcoal — primary text */
+    --ink-soft:#57697C;     /* muted blue-gray — secondary text */
+    --sage:#6FA8DC;         /* soft sky blue — light accent */
+    --sage-deep:#2C5480;    /* deep steel blue — links, rail line, eyebrows */
+    --amber:#2E86C1;        /* vivid azure — pop accent */
+    --dark:#14263B;         /* deep navy — ONE bold accent card only */
+    --on-dark:#EAF1F8;
+    --on-dark-soft:rgba(234,241,248,.72);
+    --hairline:rgba(30,42,58,.13);
+    --hairline-dark:rgba(234,241,248,.18);
+    --shadow-soft:0 10px 30px rgba(30,42,58,.07);
+    --shadow-lift:0 16px 40px rgba(30,42,58,.11);
+    --nav-bg:rgba(250,246,239,.86);
+    --maxw:1080px;
+    --font-display:'Fraunces', Georgia, serif;
+    --font-body:'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono:'IBM Plex Mono', ui-monospace, monospace;
+  }
+
+  /* ===================== DARK THEME OVERRIDES ===================== */
+  :root[data-theme="dark"]{
+    --paper:#0E1B2A;
+    --paper-alt:#16283C;
+    --surface:#1C3049;
+    --ink:#EAF1F8;
+    --ink-soft:rgba(234,241,248,.68);
+    --sage-deep:#7FB8E0;
+    --hairline:rgba(234,241,248,.14);
+    --shadow-soft:0 10px 30px rgba(0,0,0,.35);
+    --shadow-lift:0 16px 40px rgba(0,0,0,.45);
+    --nav-bg:rgba(14,27,42,.86);
+  }
+  body, header.nav, .status-pill, .stat, .chip, .project-card, .beyond-card, .contact-panel{
+    transition:background-color .25s ease, color .25s ease, border-color .25s ease;
+  }
+
+  *,*::before,*::after{box-sizing:border-box;}
+  html{scroll-behavior:smooth; -webkit-font-smoothing:antialiased;}
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto;} }
+
+  body{
+    margin:0; font-family:var(--font-body); background:var(--paper); color:var(--ink);
+    line-height:1.6; font-size:16px;
+  }
+  a{color:inherit;}
+  img{max-width:100%; display:block;}
+  ul{margin:0; padding:0; list-style:none;}
+  h1,h2,h3,h4{font-family:var(--font-display); margin:0; font-weight:600; letter-spacing:-0.01em;}
+  p{margin:0;}
+
+  .skip-link{ position:absolute; left:-999px; top:0; background:var(--amber); color:var(--ink); padding:.6em 1em; z-index:200; font-family:var(--font-mono); font-size:.85rem; border-radius:0 0 8px 0; }
+  .skip-link:focus{ left:12px; top:12px; }
+  *:focus-visible{ outline:2px solid var(--sage-deep); outline-offset:3px; }
+
+  .wrap{ max-width:var(--maxw); margin:0 auto; padding:0 28px; }
+
+  .eyebrow{
+    font-family:var(--font-mono); font-size:.78rem; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--sage-deep); display:flex; align-items:center; gap:.6em; margin-bottom:1.1em;
+  }
+  .eyebrow::before{ content:""; width:7px; height:7px; border-radius:50%; background:var(--amber); flex:none; }
+
+  section{ padding:6.5rem 0; position:relative; }
+  section.tight{ padding:4.5rem 0; }
+  .alt{ background:var(--paper-alt); }
+
+  h2.h-section{ font-size:clamp(1.7rem,3.4vw,2.5rem); max-width:22ch; }
+  .section-head{ margin-bottom:3rem; }
+  .section-sub{ margin-top:1rem; max-width:56ch; color:var(--ink-soft); font-size:1.02rem; }
+
+  /* ===================== NAV ===================== */
+  header.nav{ position:fixed; top:0; left:0; right:0; z-index:50; background:var(--nav-bg); backdrop-filter:blur(8px); border-bottom:1px solid var(--hairline); }
+  .nav-inner{ max-width:var(--maxw); margin:0 auto; padding:0 28px; height:64px; display:flex; align-items:center; justify-content:space-between; gap:1.5rem; }
+  .logo{ font-family:var(--font-display); font-weight:700; font-size:1.15rem; text-decoration:none; display:flex; align-items:center; gap:.4em; }
+  .logo-dot{ width:6px; height:6px; border-radius:50%; background:var(--amber); }
+  .nav-links{ display:none; gap:1.8rem; font-size:.92rem; }
+  .nav-links a{ text-decoration:none; color:var(--ink-soft); transition:color .15s; }
+  .nav-links a:hover{ color:var(--sage-deep); }
+  .nav-cta{ font-family:var(--font-mono); font-size:.8rem; text-decoration:none; border:1px solid var(--ink); padding:.5em 1.1em; border-radius:999px; transition:background .15s, color .15s; }
+  .nav-cta:hover{ background:var(--ink); color:var(--paper); }
+  @media (min-width:900px){ .nav-links{ display:flex; } }
+
+  .nav-right{ display:flex; align-items:center; gap:.9rem; }
+  .theme-toggle{
+    appearance:none; border:1px solid var(--hairline); background:var(--surface); cursor:pointer;
+    width:38px; height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+    color:var(--ink); flex:none; transition:border-color .15s, transform .15s;
+  }
+  .theme-toggle:hover{ transform:translateY(-1px); border-color:var(--sage-deep); }
+  .theme-toggle svg{ width:18px; height:18px; }
+  .theme-toggle .icon-moon{ display:none; }
+  :root[data-theme="dark"] .theme-toggle .icon-sun{ display:none; }
+  :root[data-theme="dark"] .theme-toggle .icon-moon{ display:block; }
+
+  /* ===================== HERO ===================== */
+  .hero{ padding-top:9rem; overflow:hidden; }
+  .hero-grid{ display:grid; grid-template-columns:1fr; gap:3rem; align-items:center; }
+  @media (min-width:960px){ .hero-grid{ grid-template-columns:1.05fr .95fr; } }
+
+  .status-pill{ display:inline-flex; align-items:center; gap:.6em; font-family:var(--font-mono); font-size:.78rem; letter-spacing:.04em; border:1px solid var(--hairline); background:var(--surface); padding:.5em 1.1em; border-radius:999px; color:var(--ink-soft); margin-bottom:2rem; box-shadow:var(--shadow-soft); }
+  .status-dot{ width:8px; height:8px; border-radius:50%; background:var(--sage); box-shadow:0 0 0 0 rgba(111,168,220,.6); animation:pulse 2.4s infinite; }
+  @keyframes pulse{ 0%{ box-shadow:0 0 0 0 rgba(111,168,220,.55); } 70%{ box-shadow:0 0 0 8px rgba(111,168,220,0); } 100%{ box-shadow:0 0 0 0 rgba(111,168,220,0); } }
+  @media (prefers-reduced-motion: reduce){ .status-dot{ animation:none; } }
+
+  .hero h1{ font-size:clamp(2.3rem,5.4vw,3.6rem); line-height:1.08; letter-spacing:-.02em; max-width:14ch; color:var(--ink); }
+  .hero h1 em{
+    font-style:italic; font-weight:500; color:var(--sage-deep);
+    background:linear-gradient(90deg, var(--sage-deep), var(--amber));
+    -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+  }
+  .hero-sub{ margin-top:1.6rem; max-width:46ch; font-size:1.08rem; color:var(--ink-soft); }
+  .hero-ctas{ display:flex; flex-wrap:wrap; gap:1rem; margin-top:2.2rem; }
+  .btn{ font-family:var(--font-mono); font-size:.85rem; text-decoration:none; padding:.85em 1.5em; border-radius:999px; display:inline-flex; align-items:center; gap:.5em; transition:transform .15s, background .15s, color .15s, border-color .15s, box-shadow .15s; }
+  .btn-solid{ background:linear-gradient(135deg, var(--sage-deep), var(--amber)); color:#fff; box-shadow:var(--shadow-soft); }
+  .btn-solid:hover{ transform:translateY(-2px); box-shadow:var(--shadow-lift); filter:brightness(1.06); }
+  .btn-outline{ border:1.5px solid var(--ink); color:var(--ink); }
+  .btn-outline:hover{ background:var(--ink); color:var(--paper); transform:translateY(-2px); }
+  .btn-block{ width:100%; justify-content:center; }
+
+  /* ===================== CONTACT MODAL ===================== */
+  .contact-modal-overlay{
+    position:fixed; inset:0; background:rgba(14,20,28,.5); backdrop-filter:blur(2px);
+    z-index:200; display:flex; align-items:center; justify-content:center; padding:24px;
+    opacity:0; pointer-events:none; transition:opacity .2s ease;
+  }
+  .contact-modal-overlay.open{ opacity:1; pointer-events:auto; }
+  .contact-modal{
+    background:var(--surface); border-radius:22px; max-width:420px; width:100%;
+    padding:2.2rem; position:relative; box-shadow:var(--shadow-lift);
+    transform:translateY(14px); transition:transform .2s ease; color:var(--ink);
+  }
+  .contact-modal-overlay.open .contact-modal{ transform:translateY(0); }
+  .contact-modal-close{
+    position:absolute; top:14px; right:14px; width:32px; height:32px; border-radius:50%;
+    border:1px solid var(--hairline); background:var(--surface); cursor:pointer;
+    display:flex; align-items:center; justify-content:center; color:var(--ink-soft); font-size:1rem;
+    transition:border-color .15s, color .15s;
+  }
+  .contact-modal-close:hover{ border-color:var(--sage-deep); color:var(--ink); }
+  .contact-modal h3{ font-size:1.35rem; margin-top:.5rem; }
+  .contact-modal-sub{ color:var(--ink-soft); margin-top:.5rem; font-size:.94rem; }
+  .contact-modal-email-row{
+    display:flex; align-items:center; justify-content:space-between; gap:.8rem;
+    background:var(--paper-alt); border:1px solid var(--hairline); border-radius:12px;
+    padding:.8rem 1.1rem; margin-top:1.5rem; font-family:var(--font-mono); font-size:.85rem;
+  }
+  .contact-modal-email-row span{ overflow-wrap:anywhere; }
+  .contact-modal-email-row button{
+    font-family:var(--font-mono); font-size:.76rem; border:1px solid var(--hairline);
+    background:var(--surface); padding:.45em 1em; border-radius:999px; cursor:pointer;
+    color:var(--ink); flex:none; transition:background .15s, border-color .15s;
+  }
+  .contact-modal-email-row button:hover{ border-color:var(--sage-deep); }
+  .contact-modal-actions{ display:flex; flex-direction:column; gap:.7rem; margin-top:1.5rem; }
+  .contact-modal-note{ margin-top:1.2rem; font-size:.78rem; color:var(--ink-soft); }
+  .hero-links{ display:flex; gap:1.4rem; margin-top:2.2rem; font-family:var(--font-mono); font-size:.82rem; }
+  .hero-links a{ text-decoration:none; color:var(--sage-deep); border-bottom:1px solid transparent; }
+  .hero-links a:hover{ border-color:var(--sage-deep); }
+
+  .hero-stats{ display:grid; grid-template-columns:1fr; gap:.9rem; margin-top:2.6rem; max-width:520px; }
+  @media (min-width:480px){ .hero-stats{ grid-template-columns:1fr 1fr; } }
+  .stat{ background:var(--surface); border:1px solid var(--hairline); border-radius:14px; padding:1.1rem 1.2rem; box-shadow:var(--shadow-soft); }
+  .stat b{ display:block; font-family:var(--font-mono); font-size:1.3rem; color:var(--sage-deep); }
+  .stat span{ font-size:.78rem; color:var(--ink-soft); }
+
+  /* hero photo column */
+  .hero-photo-wrap{ position:relative; }
+  .hero-blob{ position:absolute; width:440px; height:440px; max-width:120%; border-radius:50%; top:-40px; right:-40px; z-index:0; pointer-events:none; filter:blur(6px); background:radial-gradient(circle at 30% 30%, rgba(111,168,220,.38), rgba(46,134,193,.22) 55%, transparent 72%); }
+  .photo-slot{ position:relative; z-index:1; border-radius:28px; overflow:hidden; background:var(--surface); border:1px solid var(--hairline); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:.7rem; color:var(--ink-soft); text-align:center; padding:2rem; aspect-ratio:4/5; box-shadow:var(--shadow-soft); }
+  .photo-slot img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; border-radius:28px; }
+  .slot-icon{ width:34px; height:34px; opacity:.55; }
+  .slot-label{ font-family:var(--font-mono); font-size:.76rem; max-width:20ch; }
+  .photo-badge{ position:absolute; z-index:2; bottom:16px; left:16px; background:var(--surface); padding:.6em 1.1em; border-radius:999px; box-shadow:var(--shadow-lift); font-family:var(--font-mono); font-size:.78rem; display:flex; align-items:center; gap:.5em; }
+  .photo-badge .dot{ width:7px; height:7px; border-radius:50%; background:var(--sage); }
+  .floating-chip{ position:absolute; z-index:2; background:var(--surface); padding:.55em 1em; border-radius:999px; box-shadow:var(--shadow-lift); font-family:var(--font-mono); font-size:.72rem; color:var(--ink-soft); }
+  .chip-top{ top:14px; right:14px; }
+  .chip-bottom{ bottom:16px; right:16px; }
+
+  /* ===================== ABOUT ===================== */
+  .about-grid{ display:grid; grid-template-columns:1fr; gap:3rem; }
+  @media (min-width:860px){ .about-grid{ grid-template-columns:1.15fr .85fr; align-items:center; } }
+  .about-body p{ margin-bottom:1.2rem; max-width:58ch; font-size:1.03rem; }
+  .pull{ font-family:var(--font-display); font-style:italic; font-size:1.3rem; border-left:2px solid var(--amber); padding-left:1.2rem; color:var(--ink); margin-top:1.6rem; max-width:34ch; }
+  .about-photo .photo-slot{ aspect-ratio:1/1; border-radius:24px; }
+  .about-photo .photo-slot img{ border-radius:24px; }
+
+  /* ===================== EDUCATION ===================== */
+  .edu-list{ display:flex; flex-direction:column; gap:2.4rem; }
+  .edu-item{ display:grid; grid-template-columns:1fr; gap:.5rem; padding-bottom:2.2rem; border-bottom:1px solid var(--hairline); }
+  @media (min-width:560px){ .edu-item{ grid-template-columns:120px 1fr; gap:1.6rem; } }
+  .edu-item:last-child{ border-bottom:none; padding-bottom:0; }
+  .edu-year{ font-family:var(--font-mono); font-size:.85rem; color:var(--sage-deep); }
+  .edu-degree{ font-family:var(--font-display); font-size:1.3rem; font-weight:600; }
+  .edu-school{ color:var(--ink-soft); margin-top:.2rem; }
+  .edu-modules{ margin-top:.8rem; font-size:.92rem; color:var(--ink-soft); }
+  .edu-modules b{ color:var(--ink); font-weight:600; }
+
+  /* ===================== SKILLS ===================== */
+  .skill-groups{ display:flex; flex-direction:column; gap:2.1rem; }
+  .skill-group h3{ font-family:var(--font-mono); font-size:.85rem; text-transform:uppercase; letter-spacing:.06em; color:var(--sage-deep); font-weight:600; margin-bottom:.9rem; }
+  .chips{ display:flex; flex-wrap:wrap; gap:.6rem; }
+  .chip{ font-size:.88rem; padding:.5em 1.1em; background:var(--surface); border:1px solid var(--hairline); border-radius:999px; box-shadow:var(--shadow-soft); }
+
+  /* ===================== PROJECTS ===================== */
+  .project-flagship{ background:var(--dark); color:var(--on-dark); border-radius:24px; padding:2.6rem; margin-bottom:2.5rem; display:grid; gap:1.8rem; grid-template-columns:1fr; position:relative; overflow:hidden; box-shadow:var(--shadow-lift); }
+  @media (min-width:860px){ .project-flagship{ grid-template-columns:.85fr 1.15fr; align-items:center; padding:3.2rem; } }
+  .flagship-graph{ position:absolute; inset:0; opacity:.16; z-index:0; }
+  .flagship-graph svg{ width:100%; height:100%; }
+  .project-flagship > *{ position:relative; z-index:1; }
+  .flagship-photo .photo-slot{ aspect-ratio:1/1; border-radius:20px; margin:0 auto; }
+  .flagship-photo .photo-slot img{ border-radius:20px; }
+  .photo-slot.on-dark{ background:rgba(255,255,255,.06); border-color:var(--hairline-dark); color:var(--on-dark-soft); }
+  .flagship-tag{ font-family:var(--font-mono); font-size:.76rem; letter-spacing:.08em; text-transform:uppercase; color:var(--amber); margin-bottom:.8rem; display:block; }
+  .project-flagship h3{ font-size:1.7rem; max-width:22ch; }
+  .project-flagship p{ margin-top:1rem; max-width:56ch; color:var(--on-dark-soft); }
+  .tag-row{ display:flex; flex-wrap:wrap; gap:.5rem; margin-top:1.3rem; }
+  .tag{ font-family:var(--font-mono); font-size:.74rem; padding:.35em .9em; border:1px solid var(--hairline-dark); border-radius:999px; color:var(--on-dark-soft); }
+  .flagship-metric{ font-family:var(--font-mono); text-align:left; border-top:1px solid var(--hairline-dark); padding-top:1.2rem; margin-top:1.6rem; }
+  .flagship-metric b{ font-size:2.2rem; display:block; color:var(--amber); }
+  .flagship-metric span{ font-size:.78rem; color:var(--on-dark-soft); }
+
+  .project-grid{ display:grid; grid-template-columns:1fr; gap:1.4rem; }
+  @media (min-width:700px){ .project-grid{ grid-template-columns:1fr 1fr; } }
+
+  /* shared "gradient card" treatment — a top accent bar used across project, beyond & contact cards */
+  .accent-card{ position:relative; background:var(--surface); border:1px solid var(--hairline); overflow:hidden; box-shadow:var(--shadow-soft); }
+  .accent-card::before{ content:""; position:absolute; top:0; left:0; right:0; height:4px; background:linear-gradient(90deg, var(--sage-deep), var(--sage), var(--amber)); }
+
+  .project-card{ border-radius:18px; padding:1.8rem; display:flex; flex-direction:column; gap:.9rem; transition:transform .2s, box-shadow .2s; }
+  .project-card:hover{ transform:translateY(-4px); box-shadow:var(--shadow-lift); }
+  .project-card .flagship-tag{ color:var(--sage-deep); }
+  .project-card h4{ font-size:1.15rem; color:var(--ink); }
+  .project-card p{ color:var(--ink-soft); font-size:.94rem; }
+  .project-card .tag{ color:var(--ink-soft); border-color:var(--hairline); }
+
+  /* ===================== EXPERIENCE ===================== */
+  .timeline{ position:relative; padding-left:2rem; }
+  .timeline::before{ content:""; position:absolute; left:5px; top:6px; bottom:6px; width:2px; background:var(--hairline); }
+  .tl-item{ position:relative; padding-bottom:2.6rem; }
+  .tl-item:last-child{ padding-bottom:0; }
+  .tl-item::before{ content:""; position:absolute; left:-2rem; top:4px; width:11px; height:11px; border-radius:50%; background:var(--paper); border:2px solid var(--sage-deep); }
+  .alt .tl-item::before{ background:var(--paper-alt); }
+  .tl-date{ font-family:var(--font-mono); font-size:.8rem; color:var(--sage-deep); }
+  .tl-role{ font-family:var(--font-display); font-size:1.25rem; font-weight:600; margin-top:.3rem; }
+  .tl-org{ color:var(--ink-soft); font-size:.92rem; margin-top:.15rem; }
+  .tl-photo{ width:100%; max-width:420px; aspect-ratio:1/1; border-radius:20px; overflow:hidden; box-shadow:var(--shadow-soft); border:1px solid var(--hairline); margin:1rem 0; }
+  .tl-photo img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .tl-desc{ margin-top:.7rem; max-width:60ch; font-size:.96rem; color:var(--ink-soft); }
+
+  /* ===================== AWARDS ===================== */
+  .awards-grid{ display:grid; grid-template-columns:1fr; gap:2.6rem; }
+  @media (min-width:860px){ .awards-grid{ grid-template-columns:1fr 1fr; } }
+  .group-title{ font-family:var(--font-mono); font-size:.85rem; text-transform:uppercase; letter-spacing:.06em; color:var(--sage-deep); margin-bottom:.9rem; font-weight:600; }
+  .award-list li, .cert-list li{ padding:1rem 0; border-bottom:1px solid var(--hairline); display:flex; flex-direction:column; }
+  .award-list li:last-child, .cert-list li:last-child{ border-bottom:none; }
+  .item-name{ font-weight:600; }
+  .item-meta{ font-family:var(--font-mono); font-size:.8rem; color:var(--sage-deep); margin-top:.2rem; }
+
+  /* ===================== BEYOND ===================== */
+  .beyond-grid{ display:grid; grid-template-columns:1fr; gap:1.8rem; }
+  @media (min-width:640px){ .beyond-grid{ grid-template-columns:1fr 1fr; } }
+  @media (min-width:900px){ .beyond-grid{ grid-template-columns:repeat(3,1fr); } }
+  .beyond-card{ border-radius:20px; padding:1.6rem; display:flex; flex-direction:column; gap:1rem; transition:transform .2s, box-shadow .2s; }
+  .beyond-card:hover{ transform:translateY(-4px); box-shadow:var(--shadow-lift); }
+  .beyond-card .photo-slot{ aspect-ratio:4/3; border-radius:14px; }
+  .beyond-card .photo-slot img{ border-radius:14px; }
+  .beyond-photos{ display:grid; grid-template-columns:1fr 1fr; gap:.6rem; }
+  .beyond-photos .photo-slot{ aspect-ratio:1/1; border-radius:14px; padding:1rem; }
+  .beyond-photos .photo-slot .slot-label{ font-size:.68rem; }
+  .beyond-card h4{ font-size:1.05rem; color:var(--ink); }
+  .beyond-card p{ font-size:.92rem; color:var(--ink-soft); }
+
+  /* ===================== CONTACT ===================== */
+  .contact-panel{ border-radius:28px; padding:3.2rem; position:relative; overflow:hidden; box-shadow:var(--shadow-lift); }
+  .contact-blob{ position:absolute; width:360px; height:360px; border-radius:50%; bottom:-120px; right:-100px; z-index:0; filter:blur(8px); background:radial-gradient(circle at 50% 50%, rgba(111,168,220,.3), rgba(46,134,193,.16) 55%, transparent 72%); }
+  .contact-inner{ position:relative; z-index:1; text-align:left; max-width:640px; }
+  .contact-inner h2{ font-size:clamp(1.8rem,4vw,2.6rem); }
+  .contact-inner p{ margin-top:1.2rem; color:var(--ink-soft); max-width:50ch; }
+  .contact-ctas{ display:flex; flex-wrap:wrap; gap:1rem; margin-top:2.2rem; }
+
+  footer{ background:var(--paper-alt); color:var(--ink-soft); padding:2.2rem 0; border-top:1px solid var(--hairline); font-size:.85rem; }
+  .footer-inner{ display:flex; flex-wrap:wrap; justify-content:space-between; gap:1rem; }
+  footer a{ text-decoration:none; color:var(--ink-soft); }
+  footer a:hover{ color:var(--ink); }
+
+  /* ===================== REVEAL ANIMATION ===================== */
+  .reveal{ opacity:0; transform:translateY(18px); transition:opacity .7s ease, transform .7s ease; }
+  .reveal.in{ opacity:1; transform:none; }
+  @media (prefers-reduced-motion: reduce){ .reveal{ opacity:1; transform:none; transition:none; } }
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- ============ TOP NAV ============ -->
+<header class="nav">
+  <div class="nav-inner">
+    <a href="#home" class="logo">EM<span class="logo-dot"></span></a>
+    <nav class="nav-links">
+      <a href="#about">About</a>
+      <a href="#education">Education</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#awards">Awards</a>
+      <a href="#beyond">Beyond</a>
+    </nav>
+    <div class="nav-right">
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle light and dark theme">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="1.6"/><path d="M12 2.5V5M12 19V21.5M4.2 4.2L6 6M18 18L19.8 19.8M2.5 12H5M19 12H21.5M4.2 19.8L6 18M18 6L19.8 4.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+      </button>
+      <a class="nav-cta" href="#contact">Contact</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============ HERO ============ -->
+  <section id="home" class="hero">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div>
+          <span class="status-pill"><span class="status-dot"></span> Open to Associate Data Scientist &amp; AI/ML roles</span>
+          <h1>Finding the <em>routes</em> hidden inside data.</h1>
+          <p class="hero-sub">I'm Elangovan Murugan, a data scientist mapping connectivity, risk and behaviour — from the UK's rail network to NHS wards to airline cabins. Currently an Associate Data Scientist at the Yorkshire &amp; Humber Office for Data Analytics, finishing an MSc in Data Science at the University of Sheffield.</p>
+          <div class="hero-ctas">
+            <a class="btn btn-solid" href="#projects">See my work ↘</a>
+            <a class="btn btn-outline js-contact-trigger" href="mailto:muruganelango2004@gmail.com?subject=CV%20Request&body=Hi%20Elangovan%2C%0A%0AI%20came%20across%20your%20portfolio%20and%20would%20like%20to%20request%20your%20CV.%0A%0AThanks." data-subject="CV Request" data-body="Hi Elangovan,&#10;&#10;I came across your portfolio and would like to request your CV.&#10;&#10;Thanks.">Request CV ✉</a>
+          </div>
+          <div class="hero-links">
+            <a href="https://github.com/Elangovanmurugan" target="_blank" rel="noopener">GitHub ↗</a>
+            <a href="https://www.linkedin.com/in/elangovan-murugan/" target="_blank" rel="noopener">LinkedIn ↗</a>
+            <a class="js-contact-trigger" href="mailto:muruganelango2004@gmail.com" data-subject="" data-body="">Email ↗</a>
+          </div>
+          <div class="hero-stats">
+            <div class="stat"><b>2,588</b><span>stations mapped in dissertation network</span></div>
+            <div class="stat"><b>30%</b><span>faster stakeholder decisions delivered</span></div>
+            <div class="stat"><b>700+</b><span>delegates coordinated across two conferences</span></div>
+            <div class="stat"><b>100%</b><span>F1-score on boundary classification model</span></div>
+          </div>
+        </div>
+        <div class="hero-photo-wrap reveal">
+          <div class="hero-blob" aria-hidden="true"></div>
+          <div class="photo-slot" id="heroPhotoSlot">
+            <img src="assets/IMG_2201.jpeg" alt="Elangovan Murugan">
+          </div>
+          <span class="photo-badge"><span class="dot"></span> Data Scientist</span>
+          <span class="floating-chip chip-top">Sheffield, UK</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ABOUT ============ -->
+  <section id="about">
+    <div class="wrap">
+      <div class="eyebrow">Platform 01 — About</div>
+      <div class="about-grid">
+        <div class="about-body reveal">
+          <p>I'm a graduate-level data scientist currently working in public-sector analytics at the Yorkshire &amp; Humber Office for Data Analytics, and finishing an MSc in Data Science at the University of Sheffield. I like the full pipeline: pulling together messy public data, building it into models and dashboards, and explaining clearly what it means to someone who has to make a decision from it.</p>
+          <p>Outside pure modelling, I've spent a lot of time coordinating people under pressure — running international conferences for 700+ delegates, representing 50+ postgraduate students to faculty, and stewarding crowds at events like the British Grand Prix. That mix of technical depth and on-the-ground coordination is what I try to bring to a team.</p>
+          <p class="pull">Curiosity and structure — in the data, and in the room.</p>
+        </div>
+        <div class="about-photo reveal">
+          <div class="photo-slot" id="aboutPhotoSlot">
+            <img src="assets/about.jpg" alt="Elangovan Murugan">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EDUCATION ============ -->
+  <section id="education" class="alt">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">Platform 02 — Education</div>
+        <h2 class="h-section">Education shaped by data, systems and research methods.</h2>
+      </div>
+      <div class="edu-list">
+        <div class="edu-item reveal">
+          <div class="edu-year">2025 – 2026</div>
+          <div>
+            <div class="edu-degree">MSc Data Science</div>
+            <div class="edu-school">University of Sheffield · United Kingdom</div>
+            <div class="edu-modules"><b>Modules:</b> Data Visualisation, Data Mining &amp; AI, Data Analysis, Database Design, Data &amp; Society, Research Methods &amp; Dissertation Preparation</div>
+          </div>
+        </div>
+        <div class="edu-item reveal">
+          <div class="edu-year">2021 – 2025</div>
+          <div>
+            <div class="edu-degree">B.Tech (Hons) Artificial Intelligence &amp; Data Science</div>
+            <div class="edu-school">Velammal Institute of Technology · First Class Hons, CGPA 8.51</div>
+            <div class="edu-modules"><b>Modules:</b> Engineering Mathematics, Signals &amp; Systems, Data Structures, DBMS, Operating Systems, Computer Networks</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SKILLS ============ -->
+  <section id="skills">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">Platform 03 — Skills</div>
+        <h2 class="h-section">A practical toolkit for applied data science.</h2>
+      </div>
+      <div class="skill-groups reveal">
+        <div class="skill-group">
+          <h3>Programming &amp; Query</h3>
+          <div class="chips"><span class="chip">Python</span><span class="chip">R</span><span class="chip">SQL</span></div>
+        </div>
+        <div class="skill-group">
+          <h3>Machine Learning &amp; AI</h3>
+          <div class="chips"><span class="chip">XGBoost</span><span class="chip">Regression</span><span class="chip">Classification</span><span class="chip">Feature Engineering</span><span class="chip">scikit-learn</span><span class="chip">TensorFlow</span><span class="chip">PyTorch</span><span class="chip">MLflow</span><span class="chip">Flask API</span></div>
+        </div>
+        <div class="skill-group">
+          <h3>Data Visualisation &amp; BI</h3>
+          <div class="chips"><span class="chip">Power BI</span><span class="chip">Tableau</span><span class="chip">Looker</span><span class="chip">Matplotlib</span><span class="chip">Seaborn</span><span class="chip">ggplot2</span></div>
+        </div>
+        <div class="skill-group">
+          <h3>Data Engineering &amp; Cloud</h3>
+          <div class="chips"><span class="chip">Apache Spark (PySpark)</span><span class="chip">Databricks</span><span class="chip">Snowflake</span><span class="chip">AWS</span><span class="chip">Docker</span><span class="chip">ETL</span><span class="chip">CI/CD</span></div>
+        </div>
+        <div class="skill-group">
+          <h3>Data Quality &amp; Governance</h3>
+          <div class="chips"><span class="chip">Root-cause analysis</span><span class="chip">Metadata management</span><span class="chip">RDBMS</span><span class="chip">Data modelling</span></div>
+        </div>
+        <div class="skill-group">
+          <h3>Tools</h3>
+          <div class="chips"><span class="chip">Git</span><span class="chip">SPSS</span><span class="chip">KNIME</span><span class="chip">Excel (Advanced)</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROJECTS ============ -->
+  <section id="projects" class="alt">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">Platform 04 — Projects</div>
+        <h2 class="h-section">Selected work.</h2>
+        <p class="section-sub">The dissertation is the flagship — everything else here is applied ML and analytics across healthcare, transport, aviation and research data.</p>
+      </div>
+
+      <div class="project-flagship reveal">
+        <div class="flagship-graph" aria-hidden="true">
+          <svg viewBox="0 0 480 420" xmlns="http://www.w3.org/2000/svg">
+            <line x1="240" y1="200" x2="90" y2="65" stroke="#EAF1F8" stroke-width="1.4"/>
+            <line x1="240" y1="200" x2="170" y2="45" stroke="#EAF1F8" stroke-width="1.4"/>
+            <line x1="240" y1="200" x2="280" y2="55" stroke="#EAF1F8" stroke-width="1.4"/>
+            <line x1="240" y1="200" x2="400" y2="90" stroke="#EAF1F8" stroke-width="1.4"/>
+            <line x1="240" y1="200" x2="80" y2="345" stroke="#EAF1F8" stroke-width="1.4"/>
+            <line x1="240" y1="200" x2="160" y2="365" stroke="#EAF1F8" stroke-width="1.4"/>
+            <line x1="240" y1="200" x2="250" y2="340" stroke="#EAF1F8" stroke-width="1.4"/>
+            <line x1="240" y1="200" x2="380" y2="335" stroke="#EAF1F8" stroke-width="1.4"/>
+            <line x1="10" y1="235" x2="470" y2="150" stroke="#2E86C1" stroke-width="1.6" stroke-dasharray="6 6"/>
+            <circle cx="90" cy="65" r="6" fill="#EAF1F8"/><circle cx="170" cy="45" r="5" fill="#EAF1F8"/>
+            <circle cx="280" cy="55" r="6" fill="#EAF1F8"/><circle cx="400" cy="90" r="5" fill="#EAF1F8"/>
+            <circle cx="80" cy="345" r="5" fill="#EAF1F8"/><circle cx="160" cy="365" r="6" fill="#EAF1F8"/>
+            <circle cx="250" cy="340" r="5" fill="#EAF1F8"/><circle cx="380" cy="335" r="6" fill="#EAF1F8"/>
+            <circle cx="240" cy="200" r="10" fill="#2E86C1"/>
+          </svg>
+        </div>
+        <div class="flagship-photo">
+          <div class="photo-slot on-dark" id="dissertationPhotoSlot">
+            <img src="assets/network_viz.jpeg" alt="Rail network visualisation">
+          </div>
+        </div>
+        <div>
+          <span class="flagship-tag">MSc Dissertation · Ongoing · Graph Theory</span>
+          <h3>Mapping the North–South divide in the UK rail network</h3>
+          <p>Built a nationwide weighted rail network of 2,588 stations and 3,658 connections in NetworkX, then tested four different definitions of the UK's North–South boundary against it using graph-theoretic measures and Random Forest / SVM models. The geographic boundary definition separated the network with a 100% F1-score — a data-backed way to talk about regional transport inequality.</p>
+          <div class="tag-row"><span class="tag">Python</span><span class="tag">NetworkX</span><span class="tag">Graph Theory</span><span class="tag">Random Forest</span><span class="tag">SVM</span></div>
+          <div class="flagship-metric"><b>100%</b><span>F1-score, geographic boundary model</span></div>
+        </div>
+      </div>
+
+      <div class="project-grid">
+        <article class="project-card accent-card reveal">
+          <span class="flagship-tag">R · ggplot2 · Time Series</span>
+          <h4>Sheffield Air Quality Analysis (2024)</h4>
+          <p>Analysed 5,990+ hourly OpenAQ/NHS air-quality readings, flagging 329 extreme PM2.5 events and showing Sheffield's annual mean PM2.5 ran 48% above WHO guidance — built as a composite visualisation grounded in Grammar of Graphics and WCAG accessibility principles.</p>
+          <div class="tag-row"><span class="tag">R</span><span class="tag">ggplot2</span><span class="tag">Accessibility</span></div>
+        </article>
+        <article class="project-card accent-card reveal">
+          <span class="flagship-tag">PySpark · Databricks · Big Data</span>
+          <h4>Scalable Research Paper Analytics Platform</h4>
+          <p>Processed 55,000+ ICLR papers and OpenAlex metadata on Databricks serverless PySpark, building join, aggregation and window-function pipelines to surface trends across academic literature at scale.</p>
+          <div class="tag-row"><span class="tag">PySpark</span><span class="tag">Databricks</span></div>
+        </article>
+        <article class="project-card accent-card reveal">
+          <span class="flagship-tag">XGBoost · SHAP · Healthcare</span>
+          <h4>Patient Readmission Risk Prediction (NHS)</h4>
+          <p>Modelled 30-day hospital readmission risk on NHS patient data, reaching 85% accuracy, then wrapped it in a SHAP-explainability dashboard so clinicians could see why a patient was flagged, not just that they were.</p>
+          <div class="tag-row"><span class="tag">XGBoost</span><span class="tag">SHAP</span></div>
+        </article>
+        <article class="project-card accent-card reveal">
+          <span class="flagship-tag">KNIME · Random Forest</span>
+          <h4>Airline Customer Satisfaction Prediction</h4>
+          <p>Compared Decision Tree and Random Forest models on 5,196 airline passenger records, hitting 89.9% accuracy and 0.96 AUC, and identified the service-quality factors that mattered most to passengers.</p>
+          <div class="tag-row"><span class="tag">KNIME</span><span class="tag">Random Forest</span></div>
+        </article>
+        <article class="project-card accent-card reveal">
+          <span class="flagship-tag">Flask · MLflow</span>
+          <h4>Credit Risk Scoring Model</h4>
+          <p>Built and validated a loan-default classifier, cutting misclassification by 20%, then shipped it as a Flask API with MLflow tracking so the model could be versioned and deployed, not just prototyped.</p>
+          <div class="tag-row"><span class="tag">Flask</span><span class="tag">MLflow</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EXPERIENCE ============ -->
+  <section id="experience">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">Platform 05 — Experience</div>
+        <h2 class="h-section">From coordinating conferences to public-sector analytics.</h2>
+      </div>
+      <div class="timeline">
+        <div class="tl-item reveal">
+          <div class="tl-date">Jan 2026 – Present</div>
+          <div class="tl-role">Associate Data Scientist, Public Sector Analytics</div>
+          <div class="tl-org">Yorkshire &amp; Humber Office for Data Analytics</div>
+          <div class="tl-photo">
+            <img src="assets/yhoda.jpeg" alt="Elangovan Murugan at the Yorkshire &amp; Humber Office for Data Analytics">
+          </div>
+          <p class="tl-desc">Designed structured analytical pipelines in Python and Power BI to monitor funding distribution and surface data-quality issues across 100+ organisations. Improved stakeholder decision efficiency by 30% and delivered recommendations that directly informed 50+ community initiatives.</p>
+        </div>
+        <div class="tl-item reveal">
+          <div class="tl-date">Sep 2025 – Present</div>
+          <div class="tl-role">Academic Representative, MSc Data Science</div>
+          <div class="tl-org">University of Sheffield</div>
+          <p class="tl-desc">Represent 50+ postgraduate students in formal faculty committees, turning student feedback into structured, evidence-based submissions on assessment transparency and academic engagement.</p>
+        </div>
+        <div class="tl-item reveal">
+          <div class="tl-date">2024 – 2025</div>
+          <div class="tl-role">Chief Coordinator, International Conferences</div>
+          <div class="tl-org">ICDAIC (700+ delegates) &amp; ICICT (500+ delegates)</div>
+          <p class="tl-desc">Led end-to-end planning and delivery of two large-scale international academic conferences — coordinating multidisciplinary teams, speakers, sponsors and logistics under competing priorities and tight timelines.</p>
+        </div>
+        <div class="tl-item reveal">
+          <div class="tl-date">Feb 2025</div>
+          <div class="tl-role">Data Science Job Simulation</div>
+          <div class="tl-org">British Airways · Forage</div>
+          <p class="tl-desc">Performed EDA on 10,000+ booking records to identify trends and behaviour patterns, then built demand-forecasting models that improved forecast accuracy by 18%.</p>
+        </div>
+        <div class="tl-item reveal">
+          <div class="tl-date">Aug 2023</div>
+          <div class="tl-role">AI Intern</div>
+          <div class="tl-org">Pantech Solutions</div>
+          <p class="tl-desc">Designed and deployed agent-based AI systems, automating 30% of manual decision workflows across stakeholder-facing processes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ AWARDS & CERTIFICATIONS ============ -->
+  <section id="awards" class="alt">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">Platform 06 — Awards &amp; Certifications</div>
+        <h2 class="h-section">Recognition alongside the day-to-day work.</h2>
+      </div>
+      <div class="awards-grid">
+        <div class="reveal">
+          <div class="group-title">Awards</div>
+          <ul class="award-list">
+            <li><span class="item-name">National Runner-up, National Level Silambam Championship</span><span class="item-meta">Traditional martial arts · Jan 2023</span></li>
+            <li><span class="item-name">NCC 'C' Certificate</span><span class="item-meta">NCC TN-1 Battalion · Jan 2023</span></li>
+            <li><span class="item-name">Scout Master</span><span class="item-meta">Nehru Yuva Kendra · May 2023</span></li>
+          </ul>
+        </div>
+        <div class="reveal">
+          <div class="group-title">Certifications</div>
+          <ul class="cert-list">
+            <li><span class="item-name">Google Data Analytics</span><span class="item-meta">Google</span></li>
+            <li><span class="item-name">Microsoft Power BI</span><span class="item-meta">EduRekha</span></li>
+            <li><span class="item-name">IBM Data Analyst</span><span class="item-meta">IBM</span></li>
+            <li><span class="item-name">Data Science Job Simulation</span><span class="item-meta">British Airways · Forage</span></li>
+            <li><span class="item-name">Journey to Cloud: Envisioning Your Solution</span><span class="item-meta">IBM SkillsBuild</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BEYOND THE TRACKS ============ -->
+  <section id="beyond">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">Platform 07 — Beyond the Tracks</div>
+        <h2 class="h-section">A little life outside the notebook.</h2>
+        <p class="section-sub">Curiosity beyond the data too — trekking, travel and time spent on the ground at a Formula 1 weekend.</p>
+      </div>
+      <div class="beyond-grid">
+        <div class="beyond-card accent-card reveal">
+          <div class="beyond-photos">
+            <div class="photo-slot" id="f1PhotoSlot1">
+              <img src="assets/silverstone1.jpeg" alt="Elangovan Murugan stewarding at the British Grand Prix">
+            </div>
+            <div class="photo-slot" id="f1PhotoSlot2">
+              <img src="assets/silverstone2.jpeg" alt="Elangovan Murugan at Silverstone during the British Grand Prix">
+            </div>
+          </div>
+          <h4>Trackside at Silverstone</h4>
+          <p>Part-time event steward with FGH Security at this year's British Grand Prix — crowd management and event operations across a full Formula 1 race weekend.</p>
+        </div>
+        <div class="beyond-card accent-card reveal">
+          <div class="photo-slot" id="trekPhotoSlot">
+            <img src="assets/peak_district.jpeg" alt="Elangovan Murugan trekking in the Peak District">
+          </div>
+          <h4>On foot in the Peak District</h4>
+          <p>Regular trekking and hill-walking across the Peak District's routes, close to home in Sheffield.</p>
+        </div>
+        <div class="beyond-card accent-card reveal">
+          <div class="photo-slot" id="travelPhotoSlot">
+            <img src="assets/bath_image.jpeg" alt="Elangovan Murugan on a trip to Bath and Oxford">
+          </div>
+          <h4>Weekends away</h4>
+          <p>Recent trips to Bath and Oxford — Roman history in one, collegiate architecture in the other.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section id="contact" class="alt tight">
+    <div class="wrap">
+      <div class="contact-panel accent-card reveal">
+        <div class="contact-blob" aria-hidden="true"></div>
+        <div class="contact-inner">
+          <div class="eyebrow">Platform 08 — Contact</div>
+          <h2>Open to Associate Data Scientist, AI/ML and analytics roles.</h2>
+          <p>Happy to talk about data science, machine learning, analytics or research opportunities — or just compare notes on rail networks and race weekends.</p>
+          <div class="contact-ctas">
+            <a class="btn btn-solid js-contact-trigger" href="mailto:muruganelango2004@gmail.com?subject=Portfolio%20Enquiry" data-subject="Portfolio Enquiry" data-body="">Email me ✉</a>
+            <a class="btn btn-outline" href="https://www.linkedin.com/in/elangovan-murugan/" target="_blank" rel="noopener">LinkedIn ↗</a>
+            <a class="btn btn-outline" href="https://github.com/Elangovanmurugan" target="_blank" rel="noopener">GitHub ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap footer-inner">
+    <span>© <span id="year"></span> Elangovan Murugan.</span>
+    <span><a href="#home">Back to top ↑</a></span>
+  </div>
+</footer>
+
+<!-- ============ CONTACT MODAL ============ -->
+<div class="contact-modal-overlay" id="contactModalOverlay" role="dialog" aria-modal="true" aria-labelledby="contactModalTitle">
+  <div class="contact-modal">
+    <button class="contact-modal-close" id="contactModalClose" type="button" aria-label="Close">✕</button>
+    <div class="eyebrow">Contact</div>
+    <h3 id="contactModalTitle">Send me an email</h3>
+    <p class="contact-modal-sub">Choose the easiest way to get in touch.</p>
+    <div class="contact-modal-email-row">
+      <span id="contactModalEmailText">muruganelango2004@gmail.com</span>
+      <button type="button" id="contactModalCopy">Copy</button>
+    </div>
+    <div class="contact-modal-actions">
+      <a class="btn btn-solid btn-block" id="contactModalGmail" href="#" target="_blank" rel="noopener">Open Gmail ↗</a>
+      <a class="btn btn-outline btn-block" id="contactModalMailApp" href="#">Use mail app ↗</a>
+    </div>
+    <p class="contact-modal-note">If your mail app is not configured, use Copy or Open Gmail.</p>
+  </div>
+</div>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Light / dark theme toggle (in-memory only — follows system preference on load)
+  (function(){
+    var root = document.documentElement;
+    var toggle = document.getElementById('themeToggle');
+    var metaTheme = document.querySelector('meta[name="theme-color"]');
+    var THEME_COLORS = { light:'#EEF4FB', dark:'#0E1B2A' };
+    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var current = prefersDark ? 'dark' : 'light';
+
+    function applyTheme(theme){
+      current = theme;
+      if(theme === 'dark'){ root.setAttribute('data-theme', 'dark'); }
+      else{ root.removeAttribute('data-theme'); }
+      if(toggle){ toggle.setAttribute('aria-pressed', theme === 'dark' ? 'true' : 'false'); }
+      if(metaTheme){ metaTheme.setAttribute('content', THEME_COLORS[theme]); }
+    }
+    applyTheme(current);
+
+    if(toggle){
+      toggle.addEventListener('click', function(){
+        applyTheme(current === 'dark' ? 'light' : 'dark');
+      });
+    }
+  })();
+
+  var revealObserver = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        entry.target.classList.add('in');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(function(el){ revealObserver.observe(el); });
+
+  // Contact modal — replaces plain mailto links, which silently do nothing
+  // for anyone without a default mail app configured on their device.
+  (function(){
+    var EMAIL = 'muruganelango2004@gmail.com';
+    var overlay = document.getElementById('contactModalOverlay');
+    var closeBtn = document.getElementById('contactModalClose');
+    var copyBtn = document.getElementById('contactModalCopy');
+    var gmailLink = document.getElementById('contactModalGmail');
+    var mailAppLink = document.getElementById('contactModalMailApp');
+    var lastFocused = null;
+
+    function openModal(subject, body){
+      var params = [];
+      if(subject){ params.push('su=' + encodeURIComponent(subject)); }
+      if(body){ params.push('body=' + encodeURIComponent(body)); }
+      var gmailParams = ['view=cm', 'fs=1', 'to=' + encodeURIComponent(EMAIL)].concat(params).join('&');
+      gmailLink.href = 'https://mail.google.com/mail/?' + gmailParams;
+
+      var mailtoParams = [];
+      if(subject){ mailtoParams.push('subject=' + encodeURIComponent(subject)); }
+      if(body){ mailtoParams.push('body=' + encodeURIComponent(body)); }
+      mailAppLink.href = 'mailto:' + EMAIL + (mailtoParams.length ? '?' + mailtoParams.join('&') : '');
+
+      lastFocused = document.activeElement;
+      overlay.classList.add('open');
+      document.documentElement.style.overflow = 'hidden';
+      closeBtn.focus();
+    }
+
+    function closeModal(){
+      overlay.classList.remove('open');
+      document.documentElement.style.overflow = '';
+      if(lastFocused){ lastFocused.focus(); }
+    }
+
+    document.querySelectorAll('.js-contact-trigger').forEach(function(el){
+      el.addEventListener('click', function(e){
+        e.preventDefault();
+        openModal(el.dataset.subject || '', el.dataset.body || '');
+      });
+    });
+
+    closeBtn.addEventListener('click', closeModal);
+    overlay.addEventListener('click', function(e){ if(e.target === overlay){ closeModal(); } });
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape' && overlay.classList.contains('open')){ closeModal(); }
+    });
+
+    copyBtn.addEventListener('click', function(){
+      function showCopied(){
+        var original = copyBtn.textContent;
+        copyBtn.textContent = 'Copied!';
+        setTimeout(function(){ copyBtn.textContent = original; }, 1800);
+      }
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(EMAIL).then(showCopied).catch(function(){
+          fallbackCopy();
+        });
+      } else {
+        fallbackCopy();
+      }
+      function fallbackCopy(){
+        var ta = document.createElement('textarea');
+        ta.value = EMAIL;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        try{ document.execCommand('copy'); showCopied(); }catch(err){}
+        document.body.removeChild(ta);
+      }
+    });
+  })();
+</script>
+
+</body>
+</html>
